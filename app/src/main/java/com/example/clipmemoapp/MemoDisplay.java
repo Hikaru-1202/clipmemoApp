@@ -22,8 +22,9 @@ public class MemoDisplay extends AppCompatActivity {
     private Button backBtn;
     private TextView TitleView;
     private TextView TextView;
-    public String TitleDisplay;
-    public String TextDisplay;
+    private String TitleDisplay;
+    private String TextDisplay;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
