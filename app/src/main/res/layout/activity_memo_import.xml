@@ -24,8 +24,8 @@
         android:layout_height="70dp"
         android:ems="10"
         android:inputType="text"
-        android:text="No Title"
         android:textSize="34sp"
+        android:text="NoTitle"
         app:layout_constraintTop_toBottomOf="@+id/returnButton"
         tools:layout_editor_absoluteX="16dp" />
 
@@ -37,8 +37,8 @@
         android:ems="10"
         android:gravity="start|top"
         android:inputType="textMultiLine"
-        android:text="No Text"
         android:textSize="24sp"
+        android:text="NoText"
         app:layout_constraintTop_toBottomOf="@+id/editTitle"
         tools:layout_editor_absoluteX="46dp" />
 
