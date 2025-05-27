@@ -7,13 +7,28 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <Button
+        android:id="@+id/userButton"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:text="ユーザー"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/memo_view_Button"
+        android:layout_width="109dp"
+        android:layout_height="53dp"
+        android:text="メモ表示"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/memo_import_Button" />
+
+    <Button
+        android:id="@+id/memo_import_Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="新規メモ"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/userButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
