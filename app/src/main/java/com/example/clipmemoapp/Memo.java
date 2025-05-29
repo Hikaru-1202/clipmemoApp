@@ -5,7 +5,7 @@ import java.util.Date;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
-public class memo extends RealmObject {
+public class Memo extends RealmObject {
     @PrimaryKey
     public long memo_id;
     public int category;
