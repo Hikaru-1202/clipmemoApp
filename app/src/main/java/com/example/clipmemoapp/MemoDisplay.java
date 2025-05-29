@@ -12,30 +12,45 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import org.w3c.dom.Text;
+
 import java.util.Date;
 
 import io.realm.Realm;
+import io.realm.RealmResults;
 
 public class MemoDisplay extends AppCompatActivity {
+    Realm mRealm;
     private Button backBtn;
     private TextView TitleView;
     private TextView TextView;
-    private String TitleDisplay;
-    private String TextDisplay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_memo_display);
-        Intent intent = getIntent();
-        TitleDisplay = intent.getStringExtra("MEMO_TITLE");
-        TextDisplay = intent.getStringExtra("MEMO_TEXT");
+
+        mRealm = Realm.getDefaultInstance();
 
         TitleView = findViewById(R.id.titleView);
         TextView = findViewById(R.id.textView);
-        TitleView.setText(TitleDisplay);
-        TextView.setText(TextDisplay);
+
+        mRealm.executeTransactionAsync(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                RealmResults<Memo> memos
+                        = realm.where(Memo.class).findAll();
+                TextView.setText("取得");
+                for (Memo memo:
+                        memos) {
+                    String text = TextView.getText() + "\n"
+                            + memo.toString();
+                    TextView.setText(text);
+                }
+            }
+        });
+
         backBtn = findViewById(R.id.returnButton);
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,5 +59,12 @@ public class MemoDisplay extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        mRealm.close();
     }
 }
