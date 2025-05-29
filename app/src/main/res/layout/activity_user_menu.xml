@@ -7,14 +7,13 @@
     android:layout_height="match_parent"
     tools:context=".UserMenu">
 
-
-
     <Button
         android:id="@+id/returnButton"
         style="@style/Widget.Material3.Button.TextButton"
         android:layout_width="wrap_content"
         android:layout_height="70dp"
         android:layout_gravity="left"
+        android:layout_marginTop="15dp"
         android:text="＜戻る"
         android:textSize="30dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -68,8 +67,9 @@
         android:id="@+id/textView2"
         android:layout_width="292dp"
         android:layout_height="70dp"
-        android:text="ユーザーメニュー"
+        android:layout_marginTop="15dp"
         android:gravity="center|left"
+        android:text="ユーザーメニュー"
         android:textSize="25dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"

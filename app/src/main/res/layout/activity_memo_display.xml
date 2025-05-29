@@ -13,6 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="70dp"
         android:layout_gravity="left"
+        android:layout_marginTop="15dp"
         android:text="＜戻る"
         android:textSize="30dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,24 +22,27 @@
     <TextView
         android:id="@+id/titleView"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="60dp"
         android:ems="10"
         android:inputType="text"
         android:text="No Title"
         android:textSize="34sp"
+        android:gravity="center|left"
         app:layout_constraintTop_toBottomOf="@+id/returnButton"
         tools:layout_editor_absoluteX="16dp" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="144dp"
+        android:layout_height="0dp"
         android:ems="10"
         android:gravity="start|top"
         android:inputType="textMultiLine"
         android:text="No Text"
         android:textSize="24sp"
-        app:layout_constraintTop_toBottomOf="@+id/titleView"
-        tools:layout_editor_absoluteX="46dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titleView" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

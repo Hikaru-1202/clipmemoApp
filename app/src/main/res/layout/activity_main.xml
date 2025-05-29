@@ -9,24 +9,25 @@
 
     <Button
         android:id="@+id/userButton"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="105dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="30dp"
         android:text="ユーザー"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/memo_view_Button"
-        android:layout_width="109dp"
-        android:layout_height="53dp"
+        android:layout_width="105dp"
+        android:layout_height="55dp"
         android:text="メモ表示"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/memo_import_Button" />
 
     <Button
         android:id="@+id/memo_import_Button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="105dp"
+        android:layout_height="55dp"
         android:text="新規メモ"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/userButton" />
