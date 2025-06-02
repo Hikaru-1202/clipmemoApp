@@ -11,8 +11,10 @@
         android:id="@+id/userButton"
         android:layout_width="105dp"
         android:layout_height="55dp"
+        android:layout_marginStart="48dp"
         android:layout_marginTop="35dp"
         android:text="ユーザー"
+        app:layout_constraintEnd_toStartOf="@+id/memo_import_Button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -20,26 +22,31 @@
         android:id="@+id/memo_view_Button"
         android:layout_width="105dp"
         android:layout_height="55dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginEnd="48dp"
         android:text="メモ表示"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/memo_import_Button" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/memo_import_Button"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/memo_import_Button"
         android:layout_width="105dp"
         android:layout_height="55dp"
+        android:layout_marginTop="35dp"
         android:text="新規メモ"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userButton" />
+        app:layout_constraintEnd_toStartOf="@+id/memo_view_Button"
+        app:layout_constraintStart_toEndOf="@+id/userButton"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/delete_Button"
-        android:layout_width="105dp"
-        android:layout_height="55dp"
-        android:text="DB削除"
+    <ListView
+        android:id="@+id/List"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/memo_view_Button"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintTop_toBottomOf="@+id/memo_import_Button" />
 
     <!--    <ScrollView-->
 <!--        android:layout_width="0dp"-->
