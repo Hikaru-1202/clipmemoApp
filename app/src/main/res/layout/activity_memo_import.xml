@@ -20,12 +20,12 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTitle"
+        android:id="@+id/importTitle"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:ems="10"
         android:inputType="text"
-        android:text="No Title"
+        android:hint="No Title"
         android:textSize="34sp"
         android:gravity="center|left"
         app:layout_constraintEnd_toEndOf="parent"
@@ -33,18 +33,18 @@
         app:layout_constraintTop_toBottomOf="@+id/returnButton" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/importText"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:background="#00000000"
         android:ems="10"
         android:gravity="start|top"
         android:inputType="textMultiLine"
-        android:text="NoText"
+        android:hint="No Text"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/importTitle" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
