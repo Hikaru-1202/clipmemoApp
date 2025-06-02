@@ -1,14 +1,13 @@
 package com.example.clipmemoapp;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 public class UserMenu extends AppCompatActivity {
     private Button backBtn;
@@ -16,6 +15,7 @@ public class UserMenu extends AppCompatActivity {
     private Button codeBtn;
     private Button notificationBtn;
     private Button clipBtn;
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,7 +30,34 @@ public class UserMenu extends AppCompatActivity {
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                Intent intent = new Intent(UserMenu.this,MainActivity.class);
+                startActivity(intent);
+            }
+        });
+        passBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(UserMenu.this,PassSetting.class);
+                startActivity(intent);
+            }
+        });
+        codeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(UserMenu.this,CodeSetting.class);
+                startActivity(intent);
+            }
+        });
+        notificationBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        clipBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
             }
         });
     }
