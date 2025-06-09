@@ -9,7 +9,11 @@ import android.widget.Button;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
+import io.realm.Realm;
+import io.realm.RealmResults;
+
 public class UserMenu extends AppCompatActivity {
+    Realm mRealm;
     private Button backBtn;
     private Button passBtn;
     private Button codeBtn;
@@ -27,6 +31,8 @@ public class UserMenu extends AppCompatActivity {
         notificationBtn = findViewById(R.id.notificationButton);
         clipBtn = findViewById(R.id.clipButton);
 
+        mRealm = Realm.getDefaultInstance();
+
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -37,7 +43,7 @@ public class UserMenu extends AppCompatActivity {
         passBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(UserMenu.this,PassSetting.class);
+                Intent intent = new Intent(UserMenu.this, PassEdit.class);
                 startActivity(intent);
             }
         });
