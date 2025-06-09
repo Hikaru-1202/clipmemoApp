@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/context_favorite"
+        android:title="お気に入り"/>
+    <item
+        android:id="@+id/context_category"
+        android:title="カテゴリを選択" />
+    <item
+        android:id="@+id/context_protect"
+        android:title="保護"/>
+    <item
+        android:id="@+id/context_password"
+        android:title="パスワード"/>
+    <item
+        android:id="@+id/context_delete"
+        android:title="削除"
+        />
+</menu>
