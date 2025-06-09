@@ -22,7 +22,6 @@ public class MemoImport extends AppCompatActivity {
     private String G_Title;
     private String G_Text;
     private long newId = 0;
-    private long ID_NUM;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -64,8 +63,7 @@ public class MemoImport extends AppCompatActivity {
                         memo.category = 0;
                         memo.favorite_flag = 0;
                         memo.block_flag = 0;
-                        memo.password_needed_flag = 0;
-                        memo.memo_delete_flag = 0;
+                        memo.password_needed_flag = 1;
                         memo.made_date = new Date();
                         memo.updated_date = new Date();
 

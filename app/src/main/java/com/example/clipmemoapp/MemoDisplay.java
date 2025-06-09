@@ -31,7 +31,7 @@ public class MemoDisplay extends AppCompatActivity {
         setContentView(R.layout.activity_memo_display);
 
         ID_NUM = getIntent().getLongExtra("KeyNUM",0);
-        Log.v("MY_LOG", String.valueOf(ID_NUM));
+        Log.v("MY_LOG","Display:"+String.valueOf(ID_NUM));
 
         ((TextView) findViewById(R.id.textView)).setMovementMethod(new ScrollingMovementMethod());
 
