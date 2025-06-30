@@ -17,12 +17,6 @@
             android:name=".PassEdit"
             android:exported="false" />
         <activity
-            android:name=".DeleteAccept"
-            android:exported="false" />
-        <activity
-            android:name=".MemoEdit"
-            android:exported="false" />
-        <activity
             android:name=".UserMenu"
             android:exported="false" />
         <activity
@@ -39,9 +33,6 @@
             android:exported="false" />
         <activity
             android:name=".CodeImport"
-            android:exported="false" />
-        <activity
-            android:name=".PassEdit"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
