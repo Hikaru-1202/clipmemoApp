@@ -38,6 +38,7 @@
         android:ems="10"
         android:gravity="center|left"
         android:hint="No Pass"
+        android:longClickable="false"
         android:inputType="textPassword"
         android:textSize="34sp"
         android:maxLines="1"

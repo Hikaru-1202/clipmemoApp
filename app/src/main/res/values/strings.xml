@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">clipmemoApp</string>
+    <string name="NULL_code">認証キーの登録がされていません</string>
+    <string name="Block_memo">このメモは保護されています</string>
+    <string name="Block_message">保護状態に設定しました</string>
+    <string name="Unblock_message">保護状態を解除しました</string>
+    <string name="Favorite_message">お気に入りに設定しました</string>
+    <string name="Unfavorite_message">お気に入りを解除しました</string>
+    <string name="Pass_needed_message">パスワードを設定しました</string>
+    <string name="Pass_unneeded_message">パスワードを解除しました</string>
+    <string name="Pass_Code_delete_message">パスワードと認証・質問キーを削除しました</string>
+    <string name="Pass_delete_message">パスワードを削除しました</string>
+    <string name="Code_delete_message">認証・質問キーを削除しました</string>
+    <string name="Pass_Code_nothing_message">現在パスワードと認証・質問キーは登録されていません</string>
+    <string name="Pass_nothing_message">現在パスワードは登録されていません</string>
+    <string name="Pass_Import_needed_message">パスワードの登録を行ってください</string>
+    <string name="NULL">NULL</string>
 </resources>

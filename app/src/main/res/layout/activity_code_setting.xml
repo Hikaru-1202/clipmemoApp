@@ -18,7 +18,7 @@
     app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/old_pass_message"
+        android:id="@+id/old_question_message"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -36,7 +36,7 @@
         android:spinnerMode="dropdown"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/old_pass_message" />
+        app:layout_constraintTop_toBottomOf="@+id/old_question_message" />
 
     <TextView
         android:id="@+id/import_code_message"
@@ -68,12 +68,12 @@
         app:layout_constraintTop_toBottomOf="@+id/import_code_message" />
 
     <TextView
-        android:id="@+id/new_pass_message"
+        android:id="@+id/new_question_message"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:gravity="center"
-        android:text="質問キー選択"
+        android:text="新質問キー選択"
         android:textSize="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -87,7 +87,7 @@
         android:spinnerMode="dropdown"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/new_pass_message" />
+        app:layout_constraintTop_toBottomOf="@+id/new_question_message" />
 
     <TextView
         android:id="@+id/new_code_message"
@@ -95,7 +95,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:gravity="center"
-        android:text="認証キー設定"
+        android:text="新認証キー設定"
         android:textSize="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -117,6 +117,17 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/new_code_message" />
+    <TextView
+        android:id="@+id/code_miss_message"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text=""
+        android:textSize="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/new_import_code" />
 
     <Button
         android:id="@+id/checkButton"

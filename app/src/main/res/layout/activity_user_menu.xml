@@ -31,26 +31,16 @@
         app:layout_constraintTop_toBottomOf="@+id/passButton" />
 
     <Button
-        android:id="@+id/notificationButton"
+        android:id="@+id/deleteButton"
         android:layout_width="358dp"
         android:layout_height="71dp"
         android:layout_marginTop="20dp"
-        android:text="ノーティフィケーション表示設定"
+        android:text="パスワード、認証・質問キー削除"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/codeButton" />
-
-    <Button
-        android:id="@+id/clipButton"
-        android:layout_width="358dp"
-        android:layout_height="71dp"
-        android:layout_marginTop="20dp"
-        android:text="クリップボード保存設定"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.49"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/notificationButton" />
+<!--    <Button-->
 
     <Button
         android:id="@+id/passButton"
