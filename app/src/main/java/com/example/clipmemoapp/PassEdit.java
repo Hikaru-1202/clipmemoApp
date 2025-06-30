@@ -22,7 +22,7 @@ import java.util.regex.Pattern;
 
 import io.realm.Realm;
 
-public class PasscodeEdit extends AppCompatActivity {
+public class PassEdit extends AppCompatActivity {
 
     Realm mRealm;
 
@@ -131,7 +131,7 @@ public class PasscodeEdit extends AppCompatActivity {
                                                                     pass.password = hashPass;
                                                                 }
                                                             });
-                                                            Intent intent = new Intent(PasscodeEdit.this,UserMenu.class);
+                                                            Intent intent = new Intent(PassEdit.this,UserMenu.class);
                                                             startActivity(intent);
                                                         }else {
                                                             PassMsg.setText("新しいパスワードと再入力したパスワードが一致しません");
@@ -142,7 +142,7 @@ public class PasscodeEdit extends AppCompatActivity {
                                                 PassMsg.setText("現在のパスワードが一致していません");
                                             }
                                         } catch (NoSuchAlgorithmException e) {
-                                            Intent intent = new Intent(PasscodeEdit.this,MainActivity.class);
+                                            Intent intent = new Intent(PassEdit.this,MainActivity.class);
                                             startActivity(intent);
                                         }
                                     }
@@ -194,13 +194,13 @@ public class PasscodeEdit extends AppCompatActivity {
                                                         pass.made_date = new Date();
                                                     }
                                                 });
-                                                Intent intent = new Intent(PasscodeEdit.this,UserMenu.class);
+                                                Intent intent = new Intent(PassEdit.this,UserMenu.class);
                                                 startActivity(intent);
                                             }else {
                                                 PassMsg.setText("再入力したパスワードと一致していません");
                                             }
                                         } catch (NoSuchAlgorithmException e) {
-                                            Intent intent = new Intent(PasscodeEdit.this,MainActivity.class);
+                                            Intent intent = new Intent(PassEdit.this,MainActivity.class);
                                             startActivity(intent);
                                         }
                                     }
@@ -217,7 +217,7 @@ public class PasscodeEdit extends AppCompatActivity {
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(PasscodeEdit.this,UserMenu.class);
+                Intent intent = new Intent(PassEdit.this,UserMenu.class);
                 startActivity(intent);
             }
         });

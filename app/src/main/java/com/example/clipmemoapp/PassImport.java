@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -30,7 +31,6 @@ public class PassImport extends AppCompatActivity {
     private EditText impPass;
     private TextView PassMsg;
     private String Password;
-    private String DB_hashPass;
     private String hashPass;
     private String DB_pass;
     private long ID_NUM;
@@ -89,14 +89,29 @@ public class PassImport extends AppCompatActivity {
                 });
             }
         });
-
-        codeBtn = findViewById(R.id.codeButton);
-        codeBtn.setOnClickListener(new View.OnClickListener() {
+        mRealm.executeTransactionAsync(new Realm.Transaction() {
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(PassImport.this,CodeImport.class);
-                intent.putExtra("KeyNUM",ID_NUM);
-                startActivity(intent);
+            public void execute(Realm realm) {
+                Number max = realm.where(Code.class).max("code_id");
+                if (max != null){
+                    codeBtn = findViewById(R.id.codeButton);
+                    codeBtn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(PassImport.this,CodeImport.class);
+                            intent.putExtra("KeyNUM",ID_NUM);
+                            startActivity(intent);
+                        }
+                    });
+                }else {
+                    codeBtn = findViewById(R.id.codeButton);
+                    codeBtn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Toast.makeText(PassImport.this,R.string.NULL_code,Toast.LENGTH_LONG).show();
+                        }
+                    });
+                }
             }
         });
     }
