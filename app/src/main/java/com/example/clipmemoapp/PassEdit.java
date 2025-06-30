@@ -11,19 +11,18 @@ import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
 import java.util.Date;
 import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import io.realm.Realm;
 
-public class PassEdit extends AppCompatActivity {
+public class PasscodeEdit extends AppCompatActivity {
 
     Realm mRealm;
 
@@ -115,29 +114,35 @@ public class PassEdit extends AppCompatActivity {
                                             Check_hashPass = Base64.getEncoder().encodeToString(hashBytes2);
                                             Log.v("MY_LOG","DBのハッシュ値:"+DB_hashPass+"\n旧ハッシュ値:"+Old_hashPass+"\n新ハッシュ値:"+hashPass+"\n確認用ハッシュ値:"+Check_hashPass);
                                             if (Objects.equals(DB_hashPass, Old_hashPass)){
-                                                if (Objects.equals(DB_hashPass, hashPass)){
-                                                    PassMsg.setText("現在のパスワードと同じものが入力されています");
+                                                if (!forbiddenCheck(newPass)){
+                                                    PassMsg.setText("新パスワードに禁則文字が含まれています\n入力できる文字:半角英数字記号");
+                                                } else if (!forbiddenCheck(checkPass)) {
+                                                    PassMsg.setText("再入力したパスワードに禁則文字が含まれています\n入力できる文字:半角英数字記号");
                                                 }else {
-                                                    if (Objects.equals(hashPass, Check_hashPass)){
-                                                        mRealm.executeTransactionAsync(new Realm.Transaction() {
-                                                            @Override
-                                                            public void execute(Realm realm) {
-                                                                Pass pass = realm.where(Pass.class)
-                                                                        .equalTo("pass_id",0).findFirst();
-                                                                pass.password = hashPass;
-                                                            }
-                                                        });
-                                                        Intent intent = new Intent(PassEdit.this,UserMenu.class);
-                                                        startActivity(intent);
+                                                    if (Objects.equals(DB_hashPass, hashPass)){
+                                                        PassMsg.setText("現在のパスワードと同じものが入力されています");
                                                     }else {
-                                                        PassMsg.setText("新しいパスワードと再入力したパスワードが一致しません");
+                                                        if (Objects.equals(hashPass, Check_hashPass)){
+                                                            mRealm.executeTransactionAsync(new Realm.Transaction() {
+                                                                @Override
+                                                                public void execute(Realm realm) {
+                                                                    Pass pass = realm.where(Pass.class)
+                                                                            .equalTo("pass_id",0).findFirst();
+                                                                    pass.password = hashPass;
+                                                                }
+                                                            });
+                                                            Intent intent = new Intent(PasscodeEdit.this,UserMenu.class);
+                                                            startActivity(intent);
+                                                        }else {
+                                                            PassMsg.setText("新しいパスワードと再入力したパスワードが一致しません");
+                                                        }
                                                     }
                                                 }
                                             }else {
                                                 PassMsg.setText("現在のパスワードが一致していません");
                                             }
                                         } catch (NoSuchAlgorithmException e) {
-                                            Intent intent = new Intent(PassEdit.this,MainActivity.class);
+                                            Intent intent = new Intent(PasscodeEdit.this,MainActivity.class);
                                             startActivity(intent);
                                         }
                                     }
@@ -159,37 +164,49 @@ public class PassEdit extends AppCompatActivity {
                             if (newPass.isEmpty()){
                                 PassMsg.setText("新しいパスワードが入力されていません");
                             }else {
-                                Log.v("MY_LOG","ハッシュ化する前の値:"+newPass);
-                                try {
-                                    MessageDigest md = MessageDigest.getInstance("SHA-256");
-                                    MessageDigest md1 = MessageDigest.getInstance("SHA-256");
-                                    md.update(newPass.getBytes());
-                                    md1.update(checkPass.getBytes());
-                                    byte[] hashBytes = md.digest();
-                                    byte[] hashBytes1 = md1.digest();
-                                    hashPass = Base64.getEncoder().encodeToString(hashBytes);
-                                    Check_hashPass = Base64.getEncoder().encodeToString(hashBytes1);
-                                    Log.v("MY_LOG","ハッシュ値:"+hashPass+"\n確認用ハッシュ値:"+Check_hashPass);
-                                    if (Objects.equals(hashPass, Check_hashPass)){
-                                        mRealm.executeTransactionAsync(new Realm.Transaction() {
-                                            @Override
-                                            public void execute(Realm realm) {
-                                                Pass pass
-                                                        = realm.createObject(Pass.class,0);
-                                                pass.password = hashPass;
-                                                pass.non_active_flag = 0;
-                                                pass.made_date = new Date();
-                                            }
-                                        });
-                                        Intent intent = new Intent(PassEdit.this,UserMenu.class);
-                                        startActivity(intent);
+                                if (newPass.length() < 8||newPass.length() > 32){
+                                    PassMsg.setText("設定できるパスワードは8文字以上32文字以下です");
+                                }else {
+                                    if (!forbiddenCheck(newPass)){
+                                        PassMsg.setText("新パスワードに禁則文字が含まれています\n入力できる文字:半角英数字記号");
+                                    }else if (!forbiddenCheck(checkPass)){
+                                        PassMsg.setText("再入力したパスワードに禁則文字が含まれています\n入力できる文字:半角英数字記号");
                                     }else {
-                                        PassMsg.setText("再入力したパスワードと一致していません");
+                                        Log.v("MY_LOG","ハッシュ化する前の値:"+newPass);
+                                        try {
+                                            MessageDigest md = MessageDigest.getInstance("SHA-256");
+                                            MessageDigest md1 = MessageDigest.getInstance("SHA-256");
+                                            md.update(newPass.getBytes());
+                                            md1.update(checkPass.getBytes());
+                                            byte[] hashBytes = md.digest();
+                                            byte[] hashBytes1 = md1.digest();
+                                            hashPass = Base64.getEncoder().encodeToString(hashBytes);
+                                            Check_hashPass = Base64.getEncoder().encodeToString(hashBytes1);
+                                            Log.v("MY_LOG","ハッシュ値:"+hashPass+"\n確認用ハッシュ値:"+Check_hashPass);
+                                            if (Objects.equals(hashPass, Check_hashPass)){
+                                                mRealm.executeTransactionAsync(new Realm.Transaction() {
+                                                    @Override
+                                                    public void execute(Realm realm) {
+                                                        Pass pass
+                                                                = realm.createObject(Pass.class,0);
+                                                        pass.password = hashPass;
+                                                        pass.non_active_flag = 0;
+                                                        pass.made_date = new Date();
+                                                    }
+                                                });
+                                                Intent intent = new Intent(PasscodeEdit.this,UserMenu.class);
+                                                startActivity(intent);
+                                            }else {
+                                                PassMsg.setText("再入力したパスワードと一致していません");
+                                            }
+                                        } catch (NoSuchAlgorithmException e) {
+                                            Intent intent = new Intent(PasscodeEdit.this,MainActivity.class);
+                                            startActivity(intent);
+                                        }
                                     }
-                                } catch (NoSuchAlgorithmException e) {
-                                    Intent intent = new Intent(PassEdit.this,MainActivity.class);
-                                    startActivity(intent);
+
                                 }
+
                             }
                         }
                     });
@@ -200,7 +217,7 @@ public class PassEdit extends AppCompatActivity {
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(PassEdit.this,UserMenu.class);
+                Intent intent = new Intent(PasscodeEdit.this,UserMenu.class);
                 startActivity(intent);
             }
         });
@@ -211,4 +228,10 @@ public class PassEdit extends AppCompatActivity {
 
         mRealm.close();
     }
+    private static boolean forbiddenCheck(String forbiddenPass){
+        Pattern pattern = Pattern.compile("^[!-~]+$");
+        Matcher m = pattern.matcher(forbiddenPass);
+        return m.find();
+    }
+
 }
