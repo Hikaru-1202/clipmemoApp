@@ -2,9 +2,7 @@ package com.example.clipmemoapp;
 
 import android.app.Dialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -12,9 +10,7 @@ import androidx.fragment.app.DialogFragment;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
-import io.realm.Realm;
-
-public class DeleteDialogFragment extends DialogFragment {
+public class PassDeleteDialogFragment extends DialogFragment {
     private String title;
     private String text;
     private long ID_NUM = 0;
@@ -25,12 +21,12 @@ public class DeleteDialogFragment extends DialogFragment {
         title = requireArguments().getString("TITLE");
         text = requireArguments().getString("TEXT");
         return new MaterialAlertDialogBuilder(requireActivity())
-                .setTitle("メモ:"+title+"の削除")
-                .setMessage(String.format("%.20s",text)+"...を削除しますか？")
+                .setTitle(title)
+                .setMessage(text)
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        ((MainActivity)requireActivity()).DeleteAccept(ID_NUM);
+                        ((UserMenu)requireActivity()).PassDelete(ID_NUM);
                     }
                 })
                 .setNegativeButton("キャンセル", new DialogInterface.OnClickListener() {

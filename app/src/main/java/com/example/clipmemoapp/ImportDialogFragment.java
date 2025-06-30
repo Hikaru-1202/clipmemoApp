@@ -2,9 +2,7 @@ package com.example.clipmemoapp;
 
 import android.app.Dialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -12,31 +10,35 @@ import androidx.fragment.app.DialogFragment;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
-import io.realm.Realm;
+import java.util.Objects;
 
-public class DeleteDialogFragment extends DialogFragment {
+public class ImportDialogFragment extends DialogFragment {
     private String title;
     private String text;
-    private long ID_NUM = 0;
+    private String NoString;
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
-        ID_NUM = requireArguments().getLong("KeyID");
         title = requireArguments().getString("TITLE");
         text = requireArguments().getString("TEXT");
+        if (Objects.equals(title, "タイトル")){
+            NoString = "No Text";
+        }else {
+            NoString = "No Title";
+        }
         return new MaterialAlertDialogBuilder(requireActivity())
-                .setTitle("メモ:"+title+"の削除")
-                .setMessage(String.format("%.20s",text)+"...を削除しますか？")
-                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                .setTitle(title+"の保存")
+                .setMessage(text+"が入力されていません。\n"+text+"を入力せずに保存しますか？\n(未入力欄には["+NoString+"]が代入されます。)")
+                .setPositiveButton("はい", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        ((MainActivity)requireActivity()).DeleteAccept(ID_NUM);
+                        ((MemoImport)requireActivity()).ImportAccept();
                     }
                 })
-                .setNegativeButton("キャンセル", new DialogInterface.OnClickListener() {
+                .setNegativeButton("いいえ", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-
+//                        ((MemoImport)requireActivity()).unImportAccept();
                     }
                 })
                 .create();

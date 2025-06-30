@@ -14,7 +14,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import io.realm.Realm;
 
-public class DeleteDialogFragment extends DialogFragment {
+public class DisplayDialogFragment extends DialogFragment {
     private String title;
     private String text;
     private long ID_NUM = 0;
@@ -30,7 +30,7 @@ public class DeleteDialogFragment extends DialogFragment {
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        ((MainActivity)requireActivity()).DeleteAccept(ID_NUM);
+                        ((MemoDisplay)requireActivity()).DeleteAccept(ID_NUM);
                     }
                 })
                 .setNegativeButton("キャンセル", new DialogInterface.OnClickListener() {
